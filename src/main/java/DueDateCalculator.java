@@ -2,14 +2,14 @@ import java.time.LocalDateTime;
 
 public class DueDateCalculator {
 
-    static DueDateCalculator calc = new DueDateCalculator();
+    static DueDateCalculator calculator = new DueDateCalculator();
 
     public static void main(String[] args) {
         LocalDateTime reportDate = LocalDateTime.now();
         int turnaroundTimeHours = (int)(Math.random() * 40) + 1;
         System.out.println("Report date: " + reportDate);
         System.out.println("Turnaround time: " + turnaroundTimeHours);
-        System.out.println("Due date: " + calc.calculateDueDate(reportDate, turnaroundTimeHours));
+        System.out.println("Due date: " + calculator.calculateDueDate(reportDate, turnaroundTimeHours));
     }
 
     public LocalDateTime calculateDueDate(LocalDateTime date, int turnaroundTimeHours) {
@@ -22,9 +22,6 @@ public class DueDateCalculator {
         }
 
         for (int i = 0; i < turnaroundTimeHours; i++) {
-            //System.out.println("day of week: " + date.getDayOfWeek());
-            //System.out.println("hour of day: " + date.getHour());
-            //date = intervalCheck(date);
             date = date.plusHours(1);
             date = intervalCheck(date);
         }
