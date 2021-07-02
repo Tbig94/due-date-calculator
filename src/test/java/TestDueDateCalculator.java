@@ -7,18 +7,21 @@ import java.time.LocalDateTime;
 public class TestDueDateCalculator {
 
     static DueDateCalculator calc = null;
-    static LocalDateTime reportDate = null;
+    static LocalDateTime reportDate1 = null;
+    static LocalDateTime reportDate2 = null;
 
     @BeforeAll
     public static void init() {
         calc = new DueDateCalculator();
-        reportDate = LocalDateTime.of(2021,06,22, 12, 0);
+        reportDate1 = LocalDateTime.of(2021,06,25, 22, 7);
+        reportDate2 = LocalDateTime.of(2021,7,4, 2, 51);
     }
 
     @Test
     public void TestDueDateCalculator() {
-        LocalDateTime expectedDate = LocalDateTime.of(2021,06,24, 16, 0);
-        LocalDateTime resultDate = calc.calculateDueDate(reportDate, 20);
+        LocalDateTime rand = LocalDateTime.MAX;
+        LocalDateTime expectedDate = LocalDateTime.of(2021,06,30, 13, 0);
+        LocalDateTime resultDate = calc.calculateDueDate(reportDate1, 20);
         System.out.println("expected: " + expectedDate);
         System.out.println("result: " + resultDate + "\n");
         Assertions.assertTrue(resultDate.equals(expectedDate));
@@ -26,8 +29,26 @@ public class TestDueDateCalculator {
 
     @Test
     public void TestDueDateCalculator2() {
-        LocalDateTime expectedDate = LocalDateTime.of(2021,7,2, 11, 0);
-        LocalDateTime resultDate = calc.calculateDueDate(reportDate, 63);
+        LocalDateTime expectedDate = LocalDateTime.of(2021,7,7, 16, 0);
+        LocalDateTime resultDate = calc.calculateDueDate(reportDate1, 63);
+        System.out.println("expected: " + expectedDate);
+        System.out.println("result: " + resultDate + "\n");
+        Assertions.assertTrue(resultDate.equals(expectedDate));
+    }
+
+    @Test
+    public void TestDueDateCalculator3() {
+        LocalDateTime expectedDate = LocalDateTime.of(2021,7,8, 12, 0);
+        LocalDateTime resultDate = calc.calculateDueDate(reportDate2, 27);
+        System.out.println("expected: " + expectedDate);
+        System.out.println("result: " + resultDate + "\n");
+        Assertions.assertTrue(resultDate.equals(expectedDate));
+    }
+
+    @Test
+    public void TestDueDateCalculator4() {
+        LocalDateTime expectedDate = LocalDateTime.of(2021,7,12, 16, 0);
+        LocalDateTime resultDate = calc.calculateDueDate(reportDate2, 47);
         System.out.println("expected: " + expectedDate);
         System.out.println("result: " + resultDate + "\n");
         Assertions.assertTrue(resultDate.equals(expectedDate));
